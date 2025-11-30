@@ -1,13 +1,13 @@
 // firebase.js
 // Replace with your Firebase config
 const firebaseConfig = {
-  apiKey: "AIzaSyCe_-_lZgdk0jf8vvISySQzd5L5cBeY3AE",
-  authDomain: "attendease-ai.firebaseapp.com",
-  projectId: "attendease-ai",
-  storageBucket: "attendease-ai.firebasestorage.app",
-  messagingSenderId: "973514586",
-  appId: "1:973514586:web:714388421702a1b5dab563",
-  measurementId: "G-F45BCCB9NJ"
+  apiKey: 
+  authDomain: 
+  projectId:
+  storageBucket: 
+  messagingSenderId:
+  appId: 
+  measurementId: 
 };
 
 // using compat (easiest to work with plain scripts)
