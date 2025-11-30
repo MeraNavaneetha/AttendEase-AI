@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Login</title>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="firebase.js"></script>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#43cea2,#185a9d);
+    font-family:'Poppins',sans-serif;
+}
+.box{
+    width:330px;
+    padding:35px;
+    background:rgba(255,255,255,0.2);
+    border-radius:20px;
+    color:white;
+    text-align:center;
+    backdrop-filter:blur(8px);
+}
+input{
+    width:100%;
+    padding:12px;
+    border-radius:10px;
+    margin:10px 0;
+    border:none;
+}
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:white;
+    color:black;
+    font-weight:600;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>Student Login</h2>
+
+    <input id="email" placeholder="Email (@cmrec.ac.in)">
+    <input type="password" id="password" placeholder="Password">
+
+    <button onclick="loginStudent()">Login</button>
+ <a href="index.html">⬅ Back to Home</a>
+    <p id="err"></p>
+</div>
+
+<script>
+function loginStudent(){
+    const emailv = email.value;
+    const pass = password.value;
+
+    if(!emailv.endsWith("@cmrec.ac.in")){
+        err.innerText="Use college email only"; return;
+    }
+    if (pass !== "cmrec@1234") {
+        alert("Incorrect password!");
+        return;
+    }
+
+    auth.signInWithEmailAndPassword(emailv,pass)
+    .then(()=>location.href="student-dashboard.html")
+    .catch(e=>err.innerText=e.message);
+}
+</script>
+
+</body>
+</html>

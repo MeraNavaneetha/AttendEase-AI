@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teacher Dashboard | AttendEase AI</title>
+
+<style>
+    body {
+        margin:0;
+        font-family:'Poppins',sans-serif;
+        background: linear-gradient(135deg, #7b2ff7, #f107a3);
+        min-height:100vh;
+        padding:20px;
+        color:white;
+    }
+
+    .nav {
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:15px 25px;
+        background:rgba(255,255,255,0.18);
+        border-radius:15px;
+        backdrop-filter:blur(6px);
+        margin-bottom:25px;
+    }
+    .nav h2 { margin:0; font-size:22px; }
+
+    .container {
+        max-width:900px;
+        margin:auto;
+        background:rgba(255,255,255,0.18);
+        border-radius:20px;
+        padding:25px;
+        backdrop-filter:blur(10px);
+        box-shadow:0 8px 35px rgba(0,0,0,0.15);
+        animation:fadeIn 0.7s ease;
+    }
+
+    @keyframes fadeIn {
+        from {opacity:0; transform:translateY(20px);}
+        to {opacity:1; transform:translateY(0);}
+    }
+
+    select, button {
+        padding:12px;
+        border:none;
+        border-radius:10px;
+        font-size:15px;
+        outline:none;
+    }
+
+    select {
+        width:32%;
+        background:white;
+    }
+
+    button {
+        width:100%;
+        background:#5200c7;
+        color:white;
+        margin-top:20px;
+        font-weight:600;
+        cursor:pointer;
+        transition:0.3s;
+    }
+    button:hover {
+        background:#3b0094;
+    }
+
+    table {
+        width:100%;
+        margin-top:20px;
+        border-collapse:collapse;
+    }
+    th, td {
+        padding:12px;
+        background:rgba(255,255,255,0.2);
+        border-radius:5px;
+    }
+    th { background:rgba(255,255,255,0.35); }
+</style>
+</head>
+
+<body>
+
+<div class="nav">
+    <h2>AttendEase AI — Teacher Dashboard</h2>
+    <button onclick="logout()" style="width:auto; padding:10px 20px;">Logout</button>
+</div>
+
+<div class="container">
+    <h3>Select Branch, Batch and Date</h3><br>
+
+    <select id="branch">
+        <option value="">Select Branch</option>
+        <option>CSE</option><option>ECE</option><option>IT</option>
+        <option>CSM</option><option>CSD</option><option>AIML</option>
+    </select>
+
+    <select id="batch">
+        <option value="">Select Batch</option>
+        <option>SI</option><option>SMDSA</option><option>SM</option>
+        <option>P1</option><option>P2</option><option>P3</option>
+        <option>P4</option><option>EB</option>
+    </select>
+
+    <input type="date" id="date" style="width:32%; padding:12px; border-radius:10px; border:none;">
+
+    <button onclick="loadStudents()">Load Students</button>
+
+    <div id="studentArea"></div>
+</div>
+
+
+<script>
+function logout(){
+    window.location.href = "index.html";
+}
+
+// Temporary — after firebase.js added, this will fetch live data.
+function loadStudents(){
+    let area = document.getElementById("studentArea");
+
+    area.innerHTML = `
+        <h3>Mark Attendance</h3>
+        <table>
+            <tr>
+                <th>Roll No</th>
+                <th>Name</th>
+                <th>Status</th>
+            </tr>
+
+            <tr>
+                <td>238r1a04a1</td>
+                <td>Navaneetha</td>
+                <td>
+                    <select>
+                        <option>Present</option>
+                        <option>Absent</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>238r1a0472</td>
+                <td>Ashish</td>
+                <td>
+                    <select>
+                        <option>Present</option>
+                        <option>Absent</option>
+                    </select>
+                </td>
+            </tr>
+
+        </table>
+
+        <button onclick="saveAttendance()" style="background:#04c45c;">Save Attendance</button>
+    `;
+}
+
+function saveAttendance(){
+    alert("Attendance saved (temporary) — Firebase will be added soon!");
+}
+</script>
+
+</body>
+</html>

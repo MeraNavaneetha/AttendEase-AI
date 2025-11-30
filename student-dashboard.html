@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Dashboard</title>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+<script src="firebase.js"></script>
+
+<style>
+body{
+    margin:0;
+    background:linear-gradient(135deg,#ff512f,#dd2476);
+    color:white;
+    padding:20px;
+    font-family:'Poppins';
+}
+.container{
+    max-width:850px;
+    margin:auto;
+    background:rgba(255,255,255,0.2);
+    padding:25px;
+    border-radius:20px;
+    backdrop-filter:blur(10px);
+}
+table{
+    width:100%;
+    margin-top:20px;
+}
+td,th{
+    padding:10px;
+    background:rgba(255,255,255,0.2);
+    border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Your Attendance</h2>
+
+<div class="container">
+    <table id="attTable">
+        <tr><th>Date</th><th>Status</th></tr>
+    </table>
+</div>
+
+<script>
+auth.onAuthStateChanged(user=>{
+    if(user){
+        loadAttendance(user.email);
+    }
+});
+
+function loadAttendance(email){
+    db.collection("attendance")
+      .where("email","==",email)
+      .get().then(res=>{
+          res.forEach(doc=>{
+              let d=doc.data();
+              attTable.innerHTML += `
+                  <tr>
+                      <td>${d.date}</td>
+                      <td>${d.status}</td>
+                  </tr>
+              `;
+          });
+      });
+}
+</script>
+
+</body>
+</html>
